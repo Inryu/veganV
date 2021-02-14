@@ -27,7 +27,7 @@ function LogoutScreen({navigation}) {
         <View style={styles.btnArea}>
           <TouchableOpacity
             style={styles.btnoutline}
-            onPress={() => navigation.navigate('Button')}>
+            onPress={() => navigation.navigate('DetectBarcode')}>
             <Text
               style={{
                 color: '#2B8E1B',
@@ -79,20 +79,20 @@ const styles = StyleSheet.create({
   btn: {
     flex: 1,
     width: wp(75),
-    borderRadius: 7,
+    borderRadius: 400,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#2B8E1B',
+    backgroundColor: '#2E7D32',
   },
   btnoutline: {
     flex: 1,
     width: wp(75),
-    borderRadius: 5,
+    borderRadius: 400,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',
-    borderWidth: 1,
-    borderColor: '#2B8E1B',
+    borderWidth: 1.5,
+    borderColor: '#2E7D32',
   },
 });
 export default LogoutScreen;

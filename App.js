@@ -1,7 +1,8 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
-import LogoutScreen from './Components/LogoutScreen';
-import SelectButton from './Components/SelectButton';
+import LogoutScreen from './Screen/LogoutScreen';
+import DetectBarcode from './Screen/DetectBarcode';
+import BarcodeResult from './Screen/BarcodeResult';
 import 'react-native-gesture-handler';
 
 import 'react-native-gesture-handler';
@@ -18,7 +19,23 @@ const App: () => React$Node = () => {
           component={LogoutScreen}
           options={{headerShown: false}}
         />
-        <Stack.Screen name="Button" component={SelectButton} />
+        <Stack.Screen
+          name="DetectBarcode"
+          component={DetectBarcode}
+          options={{
+            title: '',
+            headerBackTitleVisible: false,
+          }}
+        />
+
+        <Stack.Screen
+          name="BarcodeResult"
+          component={BarcodeResult}
+          options={{
+            title: '',
+            headerBackTitleVisible: false,
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
