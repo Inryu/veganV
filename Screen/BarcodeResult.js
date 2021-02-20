@@ -73,45 +73,42 @@ const BarcodeResult = ({route, navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.result_container}>
-        <View style={styles.result_container_inner}>
-          <View style={styles.result_container_inner_l}>
-            {is_vegan_flag == 1 && (
-              <Image
-                source={require('../assets/vegan-mark-fill.png')}
-                style={{height: hp(3.5), resizeMode: 'contain'}}
-              />
-            )}
+        <View style={styles.result_img2}>
+          {is_vegan_flag == 1 && (
+            <Image
+              source={require('../assets/vegan-mark-fill.png')}
+              style={{height: hp(5), resizeMode: 'contain'}}
+            />
+          )}
 
-            {is_vegan_flag == 0 && (
-              <Image
-                source={require('../assets/non-vegan-mark-fill.png')}
-                style={{height: hp(3.5), resizeMode: 'contain'}}
-              />
-            )}
-          </View>
-          <View style={styles.result_container_inner_r}>
-            {is_vegan_flag == 1 && (
-              <Text
-                style={{
-                  fontSize: wp(4.5),
-                  fontFamily: 'NanumSquareB',
-                  color: 'black',
-                }}>
-                vegan :)
-              </Text>
-            )}
+          {is_vegan_flag == 0 && (
+            <Image
+              source={require('../assets/non-vegan-mark-fill.png')}
+              style={{height: hp(5), resizeMode: 'contain'}}
+            />
+          )}
+        </View>
 
-            {is_vegan_flag == 0 && (
-              <Text
-                style={{
-                  fontSize: wp(4.5),
-                  fontFamily: 'NanumSquareB',
-                  color: 'black',
-                }}>
-                non-vegan :(
-              </Text>
-            )}
-          </View>
+        <View style={styles.result_txt2}>
+          {is_vegan_flag == 1 && (
+            <Text
+              style={{
+                fontSize: wp(4.5),
+                fontFamily: 'NanumSquareB',
+              }}>
+              vegan
+            </Text>
+          )}
+
+          {is_vegan_flag == 0 && (
+            <Text
+              style={{
+                fontSize: wp(4.5),
+                fontFamily: 'NanumSquareB',
+              }}>
+              non-vegan
+            </Text>
+          )}
         </View>
       </View>
       <View style={styles.flat_container}>
@@ -133,17 +130,27 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   result_container: {
-    height: hp(6),
-    // borderBottomWidth: 0.3,
-    borderColor: 'black',
-    margin: wp(7),
-    borderRadius: 400,
-    borderWidth: 0.7,
+    // height: hp(6),
+    borderBottomWidth: 0.3,
+    borderColor: 'grey',
+    paddingBottom: hp(2),
+    // margin: wp(7),
+    // borderRadius: 400,
 
     // backgroundColor: '#2E7D32', //green
     // backgroundColor: 'dimgrey',
   },
+  result_txt: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 
+  result_txt2: {
+    marginTop: hp(-1),
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   result_container_inner: {
     flex: 1,
     flexDirection: 'row',
@@ -170,6 +177,12 @@ const styles = StyleSheet.create({
   },
   result_img: {
     height: hp(7),
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  result_img2: {
+    height: wp(20),
     justifyContent: 'center',
     alignItems: 'center',
   },
