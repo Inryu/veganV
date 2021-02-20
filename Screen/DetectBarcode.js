@@ -74,6 +74,33 @@ const DetectBarcode = ({navigation}) => {
     }
   };
 
+  //db fetch
+  const getIsvegan = async (mtarr) => {
+    const is_vegan_result = [];
+
+    for (var i = 0; i < mtarr.length; i++) {
+      const response = await fetch(
+        'http://192.168.0.4:3000/isvegan?' +
+          new URLSearchParams({
+            rmt_name: mtarr[i],
+          }),
+        {
+          method: 'GET',
+        },
+      );
+      if (response.status === 200) {
+        const responseJson = await response.json();
+        // console.log(responseJson.data.retrievedData);
+        // return responseJson.data.retrievedData;
+        is_vegan_result.push(responseJson.data.retrievedData);
+      } else {
+        throw new Error('unable to get isvegan data');
+      }
+    }
+
+    return is_vegan_result;
+  };
+
   const getdataFUll = async () => {
     setLoading(true);
     const report_num = await getRepotNo();
@@ -89,10 +116,22 @@ const DetectBarcode = ({navigation}) => {
       mtarr.push(mt[i]);
     }
 
+    const is_vegan_result = await getIsvegan(mtarr);
+
+    var is_vegan_flag = 1; //비건
+
+    for (var i = 0; i < is_vegan_result.length; i++) {
+      if (is_vegan_result[i].is_vegan == 0) {
+        is_vegan_flag = 0; //논비건 셋팅
+        break;
+      }
+    }
+
     setLoading(false);
     navigation.navigate('BarcodeResult', {
       report_num: report_num,
-      raw_mt: mtarr,
+      raw_mt: is_vegan_result,
+      is_vegan_flag: is_vegan_flag,
     });
   };
 
@@ -180,7 +219,7 @@ const DetectBarcode = ({navigation}) => {
                 style={{
                   color: 'white',
                   fontSize: wp(6),
-                  fontFamily: 'NanumSquareR',
+                  fontFamily: 'NanumSquareB',
                 }}>
                 Start
               </Text>

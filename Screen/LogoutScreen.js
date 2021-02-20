@@ -32,7 +32,7 @@ function LogoutScreen({navigation}) {
               style={{
                 color: '#2B8E1B',
                 fontSize: 17,
-                fontFamily: 'NanumSquareR',
+                fontFamily: 'NanumSquareB',
               }}>
               로그인
             </Text>
@@ -44,7 +44,7 @@ function LogoutScreen({navigation}) {
               style={{
                 color: 'white',
                 fontSize: 17,
-                fontFamily: 'NanumSquareR',
+                fontFamily: 'NanumSquareB',
               }}>
               회원가입
             </Text>

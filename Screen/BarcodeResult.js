@@ -17,12 +17,13 @@ import {
 } from 'react-native';
 
 const BarcodeResult = ({route, navigation}) => {
-  const {report_num, raw_mt} = route.params;
+  const {report_num, raw_mt, is_vegan_flag} = route.params;
 
   useEffect(() => {
     console.log('===params===');
     console.log(report_num);
     console.log(raw_mt);
+    console.log(is_vegan_flag);
   }, []);
 
   useLayoutEffect(() => {
@@ -33,9 +34,8 @@ const BarcodeResult = ({route, navigation}) => {
           style={{
             fontSize: wp(4),
             fontFamily: 'NanumSquareR',
-          }}>
-          원재료명
-        </Text>
+          }}
+        />
       ),
     });
   }, []);
@@ -44,19 +44,27 @@ const BarcodeResult = ({route, navigation}) => {
     return (
       <View style={styles.tablerow}>
         <View style={styles.tablecol_l}>
-          <Text style={{fontSize: wp(4), fontFamily: 'NanumSquareR'}}>
-            {item}
+          <Text
+            style={{
+              fontSize: wp(4),
+              fontFamily: 'NanumSquareR',
+            }}>
+            {item.rmt_name}
           </Text>
         </View>
         <View style={styles.tablecol_r}>
-          {/*<Image*/}
-          {/*  source={require('../assets/vegan.png')}*/}
-          {/*  style={{resizeMode: 'contain', width: wp(25)}}*/}
-          {/*/>*/}
-          <Image
-            source={require('../assets/non-vegan.png')}
-            style={{resizeMode: 'contain', width: wp(25)}}
-          />
+          {item.is_vegan == 1 && (
+            <Image
+              source={require('../assets/vegan.png')}
+              style={{resizeMode: 'contain', width: wp(25)}}
+            />
+          )}
+          {item.is_vegan == 0 && (
+            <Image
+              source={require('../assets/non-vegan.png')}
+              style={{resizeMode: 'contain', width: wp(25)}}
+            />
+          )}
         </View>
       </View>
     );
@@ -64,7 +72,49 @@ const BarcodeResult = ({route, navigation}) => {
 
   return (
     <View style={styles.container}>
-      <View style={{flex: 1}}>
+      <View style={styles.result_container}>
+        <View style={styles.result_container_inner}>
+          <View style={styles.result_container_inner_l}>
+            {is_vegan_flag == 1 && (
+              <Image
+                source={require('../assets/vegan-mark-fill.png')}
+                style={{height: hp(3.5), resizeMode: 'contain'}}
+              />
+            )}
+
+            {is_vegan_flag == 0 && (
+              <Image
+                source={require('../assets/non-vegan-mark-fill.png')}
+                style={{height: hp(3.5), resizeMode: 'contain'}}
+              />
+            )}
+          </View>
+          <View style={styles.result_container_inner_r}>
+            {is_vegan_flag == 1 && (
+              <Text
+                style={{
+                  fontSize: wp(4.5),
+                  fontFamily: 'NanumSquareB',
+                  color: 'black',
+                }}>
+                vegan :)
+              </Text>
+            )}
+
+            {is_vegan_flag == 0 && (
+              <Text
+                style={{
+                  fontSize: wp(4.5),
+                  fontFamily: 'NanumSquareB',
+                  color: 'black',
+                }}>
+                non-vegan :(
+              </Text>
+            )}
+          </View>
+        </View>
+      </View>
+      <View style={styles.flat_container}>
         <FlatList
           style={styles.list}
           data={raw_mt}
@@ -81,9 +131,49 @@ const styles = StyleSheet.create({
     flex: 1, //전체의 공간을 차지한다는 의미
     flexDirection: 'column',
     backgroundColor: 'white',
+  },
+  result_container: {
+    height: hp(6),
+    // borderBottomWidth: 0.3,
+    borderColor: 'black',
+    margin: wp(7),
+    borderRadius: 400,
+    borderWidth: 0.7,
+
+    // backgroundColor: '#2E7D32', //green
+    // backgroundColor: 'dimgrey',
+  },
+
+  result_container_inner: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+
+  result_container_inner_l: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: wp(30),
+    // paddingLeft: wp(20),
+    // borderRightWidth: 1,
+    borderColor: 'black',
+  },
+
+  result_container_inner_r: {
+    flex: 1,
+    width: wp(30),
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  flat_container: {
     paddingLeft: wp(10),
     paddingRight: wp(10),
   },
+  result_img: {
+    height: hp(7),
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
   list: {
     // backgroundColor: 'grey',
     // paddingLeft: wp(3),

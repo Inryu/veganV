@@ -42,6 +42,8 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>fonts/NanumSquareRegular.ttf</string>
+		<string>fonts/NanumSquareBold.ttf</string>
+		<string>fonts/NanumSquareExtraBold.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
