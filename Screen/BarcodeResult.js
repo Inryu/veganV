@@ -17,13 +17,14 @@ import {
 } from 'react-native';
 
 const BarcodeResult = ({route, navigation}) => {
-  const {report_num, raw_mt, is_vegan_flag} = route.params;
+  const {report_num, raw_mt, is_vegan_flag, food_name} = route.params;
 
   useEffect(() => {
     console.log('===params===');
     console.log(report_num);
     console.log(raw_mt);
     console.log(is_vegan_flag);
+    console.log(food_name);
   }, []);
 
   useLayoutEffect(() => {
@@ -73,6 +74,15 @@ const BarcodeResult = ({route, navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.result_container}>
+        <View style={{alignItems: 'center', paddingTop: hp(3)}}>
+          <Text
+            style={{
+              fontSize: wp(5),
+              fontFamily: 'NanumSquareB',
+            }}>
+            {food_name}
+          </Text>
+        </View>
         <View style={styles.result_img2}>
           {is_vegan_flag == 1 && (
             <Image
@@ -93,7 +103,7 @@ const BarcodeResult = ({route, navigation}) => {
           {is_vegan_flag == 1 && (
             <Text
               style={{
-                fontSize: wp(4.5),
+                fontSize: wp(5),
                 fontFamily: 'NanumSquareB',
               }}>
               vegan
@@ -103,7 +113,7 @@ const BarcodeResult = ({route, navigation}) => {
           {is_vegan_flag == 0 && (
             <Text
               style={{
-                fontSize: wp(4.5),
+                fontSize: wp(5),
                 fontFamily: 'NanumSquareB',
               }}>
               non-vegan

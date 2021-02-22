@@ -21,7 +21,7 @@ import Loader from '../Component/Loader';
 const DetectBarcode = ({navigation}) => {
   const key = require('../Keys/key');
   const [loading, setLoading] = useState(false);
-  const [qrvalue, setQrvalue] = useState('8801019306587');
+  const [qrvalue, setQrvalue] = useState('8801062380114');
   const [opneScanner, setOpneScanner] = useState(false);
   const [reportNum, setReportNum] = useState('');
   const [rawmt, setRawmt] = useState([]);
@@ -41,9 +41,7 @@ const DetectBarcode = ({navigation}) => {
 
     if (response.status === 200) {
       const responseJson = await response.json();
-      console.log('==품목보고정보==');
-      console.log(responseJson.C005.row[0].PRDLST_REPORT_NO);
-      return responseJson.C005.row[0].PRDLST_REPORT_NO;
+      return responseJson.C005.row[0];
     } else {
       return 0;
       // throw new Error('unable to get');
@@ -103,8 +101,9 @@ const DetectBarcode = ({navigation}) => {
 
   const getdataFUll = async () => {
     setLoading(true);
-    const report_num = await getRepotNo();
-    setReportNum(report_num);
+    const report_numdata = await getRepotNo();
+    const report_num = report_numdata.PRDLST_REPORT_NO;
+    const food_name = report_numdata.PRDLST_NM;
     const raw_mt = await getRawmt(report_num);
     // setRawmt(raw_mt);
 
@@ -132,6 +131,7 @@ const DetectBarcode = ({navigation}) => {
       report_num: report_num,
       raw_mt: is_vegan_result,
       is_vegan_flag: is_vegan_flag,
+      food_name: food_name,
     });
   };
 
