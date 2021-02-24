@@ -21,14 +21,14 @@ import Loader from '../Component/Loader';
 const DetectBarcode = ({navigation}) => {
   const key = require('../Keys/key');
   const [loading, setLoading] = useState(false);
-  const [qrvalue, setQrvalue] = useState('8801062380114');
+  const [qrvalue, setQrvalue] = useState('8801043034562');
   const [opneScanner, setOpneScanner] = useState(false);
   const [reportNum, setReportNum] = useState('');
   const [rawmt, setRawmt] = useState([]);
 
   //바코드 번호로 품목보고번호 얻기
   //http://openapi.foodsafetykorea.go.kr/api/mykey/C005/json/1/5/BAR_CD=
-  const getRepotNo = async () => {
+  const getRepotNo = async (in_qrvalue) => {
     const response = await fetch(
       'http://openapi.foodsafetykorea.go.kr/api/' +
         key.openAPIkey +
@@ -48,7 +48,7 @@ const DetectBarcode = ({navigation}) => {
     }
   };
 
-  //품목보고번호로 원재료명 얻
+  //품목보고번호로 원재료명 얻기
   //http://openapi.foodsafetykorea.go.kr/api/2817c726abd24d5cb28b/C002/json/1/5/PRDLST_REPORT_NO=
   const getRawmt = async (reportnum) => {
     const response = await fetch(
@@ -107,7 +107,7 @@ const DetectBarcode = ({navigation}) => {
     const raw_mt = await getRawmt(report_num);
     // setRawmt(raw_mt);
 
-    //쉼표 기준으로 잘라서 배열 만들
+    //쉼표 기준으로 잘라서 배열 만들기
     var mt = raw_mt.split(',');
     var mtarr = [];
 
@@ -135,10 +135,12 @@ const DetectBarcode = ({navigation}) => {
     });
   };
 
-  const onBarcodeScan = (qrvalue) => {
+  const onBarcodeScan = async (qrvalue) => {
     // Called after te successful scanning of QRCode/Barcode
+
     setQrvalue(qrvalue);
-    getdataFUll();
+
+    const what = await getdataFUll();
     setOpneScanner(false);
     // alert(qrvalue);
   };
@@ -214,7 +216,7 @@ const DetectBarcode = ({navigation}) => {
           </View>
 
           <View style={styles.btnArea_round}>
-            <TouchableOpacity style={styles.btn_round} onPress={getdataFUll}>
+            <TouchableOpacity style={styles.btn_round} onPress={onOpneScanner}>
               <Text
                 style={{
                   color: 'white',
