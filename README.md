@@ -24,7 +24,6 @@ DSC ewha 2021 winter Project로,
 <br>
 <br>
   
-___
 
   
 ## 🥦 결과화면
