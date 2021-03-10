@@ -27,8 +27,7 @@ const DetectBarcode = ({navigation}) => {
   const [rawmt, setRawmt] = useState([]);
 
   //바코드 번호로 품목보고번호 얻기
-  //http://openapi.foodsafetykorea.go.kr/api/mykey/C005/json/1/5/BAR_CD=
-  const getRepotNo = async (in_qrvalue) => {
+  const getRepotNo = async () => {
     const response = await fetch(
       'http://openapi.foodsafetykorea.go.kr/api/' +
         key.openAPIkey +
@@ -49,7 +48,6 @@ const DetectBarcode = ({navigation}) => {
   };
 
   //품목보고번호로 원재료명 얻기
-  //http://openapi.foodsafetykorea.go.kr/api/2817c726abd24d5cb28b/C002/json/1/5/PRDLST_REPORT_NO=
   const getRawmt = async (reportnum) => {
     const response = await fetch(
       'http://openapi.foodsafetykorea.go.kr/api/' +
@@ -140,7 +138,7 @@ const DetectBarcode = ({navigation}) => {
 
     setQrvalue(qrvalue);
 
-    const what = await getdataFUll();
+    await getdataFUll();
     setOpneScanner(false);
     // alert(qrvalue);
   };
