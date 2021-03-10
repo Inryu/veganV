@@ -41,7 +41,9 @@ DSC ewha 2021 winter Project로,
 
 
 
->🧤 구현 관련 자세한 사항은 아래 블로그를 참고해주세요 :> 
+>🧤 백엔드 repository<br/>
+https://github.com/Inryu/veganV-server <br/><br/>
+🧤 구현 관련 자세한 사항은 아래 블로그를 참고해주세요 :> 
 https://velog.io/@inryu/series/Vegan-V
 
 
