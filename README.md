@@ -9,7 +9,7 @@ DSC ewha 2021 winter Project로,
 
 <br>
 
-### 🛠 사용기술
+### 사용기술
 - React Native
 - react-native-camera-kit
 - Node.js + Express + Sequelize
@@ -17,7 +17,7 @@ DSC ewha 2021 winter Project로,
 
 <br>
 
-### 🔮 APIs
+### APIs
 [**식품의약품안전처 데이터활용서비스**](https://www.foodsafetykorea.go.kr/apiMain.do)
 - 바코드연계제품정보
 - 식품(첨가물)품목제조보고(원재료)
