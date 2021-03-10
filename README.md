@@ -1,6 +1,6 @@
 ## 🥦 Project Overview
+___
 
----
 DSC ewha 2021 winter Project로,
 **비거니즘을 위한 플랫폼**을 구현하고자 하였습니다.
 
@@ -9,12 +9,15 @@ DSC ewha 2021 winter Project로,
 
 바코드를 인식 한 뒤의 원재료명을 알아내기 위해 [**식품의약품안전처 데이터활용서비스**](https://www.foodsafetykorea.go.kr/apiMain.do) 의 open API를 사용하였습니다.
 
+<br>
 
 ### 🛠사용기술
 - React Native
 - react-native-camera-kit
 - Node.js + Express + Sequelize
 - Mysql 
+
+<br>
 
 ### 🔮APIs
 [**식품의약품안전처 데이터활용서비스**](https://www.foodsafetykorea.go.kr/apiMain.do)
@@ -24,9 +27,7 @@ DSC ewha 2021 winter Project로,
 <br>
   
 ## 🥦 결과화면
-
----
-
+___
 <image src="https://user-images.githubusercontent.com/55133794/110107590-71ced180-7dee-11eb-9eac-9422dfe48c64.gif" width="250" ></image>
 
 <center>
